@@ -1,11 +1,16 @@
 <div class="vstack">
-  <% @logs.each do |log| %>
-    <div class="card">
-      <div class="card-body">
-        <p class="card-text">
-          <%= log.content%>
-        </p>
-      </div>
-    </div>
+  <%= turbo_frame_tag "turbo-logs-#{@lower_id}" do %>
+    <% if @logs.exists? %>
+      <%= turbo_frame_tag "turbo-logs-#{@next_lower_id}", loading: :lazy, src: logs_path(lower_id: @next_lower_id)%>
+      <% @logs.each do |log| %>
+        <div class="card">
+          <div class="card-body">
+            <p class="card-text">
+              <%= log.content%>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
 </div>
