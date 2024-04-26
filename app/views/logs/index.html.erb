@@ -1,0 +1,11 @@
+<div class="vstack">
+  <% @logs.each do |log| %>
+    <div class="card">
+      <div class="card-body">
+        <p class="card-text">
+          <%= log.content%>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
